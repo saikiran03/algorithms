@@ -26,28 +26,27 @@ public:
     }
 
     // query (0, n-1, f, l, 1) returns sum for range [f,l];
-    int query(int s, int e, int f, int l, int n){
-    	if(l<s || f>e) // (f, l) is completely outside (s, e)
+    int query (int s, int e, int f, int l, int n) {
+    	if (l<s || f>e) // (f, l) is completely outside (s, e)
     		return 0;
 
-    	if(s<=f && l<=e) // (f, l) is completely inside (s, e)
+    	if (s<=f && l<=e) // (f, l) is completely inside (s, e)
     		return tree[n];
 
     	// (f, l) is partially inside (s, e).
     	int m = (s+e)/2;
     	int p = query(s, m, f, l, 2*n);
     	int q = query(m+1, e, f, l, 2*n+1);
-    	cout << p << " " << q << endl;
 
     	return merge(p, q);
     }
 
     // update (0, n-1, l, r, 1, v) updates range (l, r).
     void update(int s, int e, int l, int r, int n, int v){
-    	if(s>e || s>r || e<l) // (f,l) out of current range.
+    	if (s>e || s>r || e<l) // (f,l) out of current range.
     		return;
 
-    	if(s==e){
+    	if (s==e) {
     		tree[n] += v;
     		return;
     	}
@@ -63,7 +62,7 @@ public:
 private:
     int *tree, len;
 
-    int merge(int a, int b) {
+    int merge (int a, int b) {
         return a + b;
     }
 };
