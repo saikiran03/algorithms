@@ -42,7 +42,7 @@ public:
     }
 
     // update (0, n-1, l, r, 1, v) updates range (l, r).
-    void update(int s, int e, int l, int r, int n, int v){
+    void update (int s, int e, int l, int r, int n, int v) {
     	if (s>e || s>r || e<l) // (f,l) out of current range.
     		return;
 
