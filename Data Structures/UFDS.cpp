@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class UFDS {
+class DisjointSet {
 public:
-    UFDS (int n) {
+    DisjointSet (int n) {
         len = (++n);
         root = new int[n];
         size = new int[n];
@@ -45,7 +45,7 @@ private:
 };
 
 int main () {
-    UFDS ufds(5);
+    DisjointSet ufds(5);
 
     ufds.Union(1, 2);
     ufds.Union(1, 3);
