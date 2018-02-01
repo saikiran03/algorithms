@@ -30,7 +30,38 @@ namespace primality {
         return true;
     }
 
-    bool millerRabinTest(int n) {}
+	bool millerRabinUtil(int d, int n) {
+	    int a = 2 + rand() % (n - 4);
+	    int x = mpow(a, d, n);
+
+	    if (x==1 || x==n-1)
+	       return true;
+
+	    while (d!=n-1) {
+	        x = (x*x) % n;
+	        d *= 2;
+
+	        if (x==1) return false;
+	        if (x==n-1) return true;
+	    }
+
+	    return false;
+	}
+
+	bool millerRabinTest(int n) {
+	    if (n <= 1 || n == 4)  return false;
+	    if (n <= 3) return true;
+
+	    int d = n - 1;
+	    while (d&1==0) { d>>=1; }
+
+	    int k = max(5, rand() % 20);
+	    for (int i = 0; i < k; i++)
+	         if (millerRabinUtil(d, n) == false)
+	              return false;
+
+	    return true;
+	}
 
     void primeSieve(int n) {
         bool st[n+1];
@@ -59,6 +90,12 @@ namespace primality {
 int main () {
     for (int i = 2; i < 1000; i++) {
         if (primality::fermatTest(i)) {
+            cout << i << endl;
+        }
+    }
+
+	for (int i = 2; i < 1000; i++) {
+        if (primality::millerRabinTest(i)) {
             cout << i << endl;
         }
     }
