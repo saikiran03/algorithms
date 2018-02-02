@@ -46,7 +46,7 @@ inline int mpow(int b, int e, int m = mod){ int f=1; while(e>0){ if(e&1){ f=mul(
 int fac[N], invFac[N];
 
 void genInvFact(int n, int p){
-	fac[0] = 1; 
+	fac[0] = 1;
 	FOR(i,1,n){
 		fac[i] = mul(fac[i-1], i);
 		invFac[i] = mpow(fac[i], p-2);
@@ -64,7 +64,7 @@ int main() {
 	int n, p;
 	cin >> n >> p;
 	genInvFact(n, p);
-	
+
 	tcase{
 		int n, r;
 		cout << largeNCR(n, r) << endl;
